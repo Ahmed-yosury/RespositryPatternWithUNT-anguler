@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+    <div class="mb-3">
+        <label for="name" class="form-label"> Name of joptitle</label>
+        <input formControlName="depart"
+            class="form-control" type="text" id="name" placeholder=" Name"
+            [(ngModel)]="this.joptitle.name"
+            >
+        <div *ngIf="deptvaild == false" class="text-danger">
+             Department is not valid, it must be more than 3 characters.
+        </div>
+        
+    </div>
+    <button class="btn btn-success me-3" (click)="isSettingsFormValid()" routerLink="/AddressBook">Publish</button>
+
+</form>

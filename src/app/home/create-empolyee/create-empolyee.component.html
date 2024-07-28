@@ -1,0 +1,35 @@
+<form [formGroup]="form" class="container mt-5">
+    <div class="mb-3">
+        <label for="name" class="form-label"> Name</label>
+        <input formControlName="name"
+            class="form-control" type="text" id="name" placeholder="Enter First Name"
+            [(ngModel)]="Empolyee.Name">
+        <div *ngIf="namevaild == false" class="text-danger">
+            First name is not valid, it must be more than 3 characters.
+        </div>
+    </div>
+  
+  
+    <div class="mb-3">
+        <label for="department" class="form-label">Jops</label>
+        <select class="form-select" id="department" name="department" [(ngModel)]="Empolyee.JopId" [ngModelOptions]="{standalone: true}" (change)="onJopSelected($event)">
+            <option *ngFor="let deop of JobTitle" [value]="deop.id">{{ deop.name }}</option>
+        </select>
+        <p *ngIf="Empolyee.JopId==0" style="color: red;"> chose one </p>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="img">Empolyee Book Cover</label>
+        <input type="file" class="form-control" id="img" (change)="onFileSelected($event)"  accept="image/*"/>
+        <p *ngIf="changeimg==false" style="color: red;"> selected image  </p>
+      </div>
+  
+    <div class="mb-3">
+      <label class="form-label" for="img">Date </label>
+  
+        <input type="date" [(ngModel)]="Empolyee.date" [ngModelOptions]="{standalone: true}" class="form-control" name="dateOfBirth" required (input)="validateDateOfBirth()">
+       <p *ngIf="isDateOfBirthInvalid==true " style="color: red;">  Invalid Date </p>
+    </div>
+  
+    <button class="btn btn-success me-3" (click)="isSettingsFormValid()" routerLink="/AddressBook">Publish</button>
+  </form>
+  
